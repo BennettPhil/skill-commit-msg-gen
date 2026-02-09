@@ -1,19 +1,35 @@
-# commit-msg-gen
+# Commit Message Generator
 
-Generate conventional commit messages by analyzing staged git changes.
+Generate conventional commit messages from git diffs.
+
+```bash
+git diff --cached | ./scripts/run.sh
+# => feat(auth): add login validation
+```
 
 ## Prerequisites
 
-- Python 3.10+
-- Git
+- Python 3.6+
 
-## Quick Start
+## Usage
 
 ```bash
-git add src/auth/login.js
-python3 scripts/run.py
-# feat(auth): add login.js
+# From staged changes
+git diff --cached | ./scripts/run.sh
+
+# With a hint
+git diff --cached | ./scripts/run.sh --hint "fixing auth bug"
+
+# JSON output
+git diff --cached | ./scripts/run.sh --format json
 ```
 
-See [references/usage-guide.md](references/usage-guide.md) for detailed usage.
-See [references/api.md](references/api.md) for type detection rules and flags.
+## Examples
+
+See `examples/` for detailed usage patterns.
+
+## Test
+
+```bash
+./scripts/test-examples.sh
+```
